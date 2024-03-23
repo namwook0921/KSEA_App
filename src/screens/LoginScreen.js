@@ -20,6 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text>Hi</Text>
       <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
