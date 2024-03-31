@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -30,6 +30,11 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image 
+        source = {require('../media/ksea-logo.jpg')}
+        style = {styles.imageStyle}
+        resizeMode = "contain"
+      />
       <Text style={styles.title}>Signup</Text>
       <TextInput
         style={styles.input}
@@ -76,6 +81,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#000',
+  },
+  imageStyle: {
+    width: 100,
+    height: 100,
   },
   title: {
     fontSize: 24,
@@ -86,6 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
+    color: 'white',
     borderColor: "#ccc",
     borderRadius: 5,
   },
