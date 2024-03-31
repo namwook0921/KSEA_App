@@ -1,6 +1,6 @@
 // LoginScreen.js
 import React, { useState } from "react";
-import { View, Text, Image, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, Image, TextInput, Button, StyleSheet, KeyboardAvoidingView } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -26,6 +26,11 @@ const LoginScreen = ({ navigation }) => {
         resizeMode="contain"
       />
       <Text style={styles.title}>Login</Text>
+      <KeyboardAvoidingView
+        style = {styles.container}
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 0}
+      >
       <TextInput
         style={styles.TextInput}
         placeholder="Email"
@@ -39,6 +44,7 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
+      </KeyboardAvoidingView>
       <Button title="Login" onPress={handleLogin} />
       <Button title="Sign Up" onPress={navigateToSignup}></Button>
     </View>
