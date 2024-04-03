@@ -1,6 +1,14 @@
 // LoginScreen.js
 import React, { useState } from "react";
-import { View, Text, Image, TextInput, Button, StyleSheet, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  Button,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -20,17 +28,17 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image 
-        source={require('../media/ksea-logo.jpg')}
-        style = {styles.imageStyle}
+      <Image
+        source={require("../media/ksea-logo.jpg")}
+        style={styles.imageStyle}
         resizeMode="contain"
       />
       <Text style={styles.title}>Login</Text>
-      <KeyboardAvoidingView
-        style = {styles.container}
+      {/* <KeyboardAvoidingView
+        style={styles.container}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 0}
-      >
+      > */}
       <TextInput
         style={styles.TextInput}
         placeholder="Email"
@@ -44,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
       <Button title="Login" onPress={handleLogin} />
       <Button title="Sign Up" onPress={navigateToSignup}></Button>
     </View>
@@ -56,11 +64,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center", // Center the Image Vertically
     alignItems: "center", // Center the Image Horizontally
-    backgroundColor: '#000', // Background: Black
+    backgroundColor: "#000", // Background: Black
   },
   imageStyle: {
     width: 200,
-    height: 200, 
+    height: 200,
   },
   title: {
     fontSize: 24,
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    color: 'white',
+    color: "white",
     borderColor: "#ccc",
     borderRadius: 5,
   },
