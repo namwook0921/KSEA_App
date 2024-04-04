@@ -19,6 +19,11 @@ const ProfileScreen = ({navigation}) => {
           resizeMode = "contain"
         />
       </View>
+      <Image 
+        source = {require('../media/namwook.jpg')}
+        style = {styles.ProfilePhoto}
+        resizeMode = "contain"
+      />
       <Text style = {styles.name}>Andrew Namwook Lee</Text>
       <Text style = {styles.name}>이남욱</Text>
       <Text style = {styles.mail}>sexypepe@berkeley.edu</Text>
@@ -44,9 +49,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#000'
   },
   MainContainer: {
-    flex: 1, 
+    width: '80%', // 80% of Screen Width
+    aspectRatio: 0.5, // Height & Width Ratio
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center', 
+
     backgroundColor: '#000',
     borderWidth: 2,
     borderColor: '#FFF'
@@ -59,6 +66,11 @@ const styles = StyleSheet.create({
   KSEALogo: {
     width: 100,
     height: 100, 
+  },
+  ProfilePhoto: {
+    width: 250,
+    height: 250,
+    aspectRatio: 1,
   },
   name: {
     fontSize: 25,
