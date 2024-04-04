@@ -8,27 +8,38 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <View style = {styles.EntireContainer}>
-    <View style = {styles.BackContainer}>
-      <Button title = "Back" onPress = {goHome} />
-    </View>
-    <View style = {styles.MainContainer}>
-      <View style = {styles.KSEAContainer}>
-        <Image
-          source = {require('../media/ksea-logo.jpg')}
-          style = {styles.KSEALogo}
-          resizeMode = "contain"
-        />
+      <View style = {styles.BackContainer}>
+        <Button title = "Back" onPress = {goHome} />
       </View>
-      <Image 
-        source = {require('../media/namwook.jpg')}
-        style = {styles.ProfilePhoto}
-        resizeMode = "contain"
-      />
-      <Text style = {styles.name}>Andrew Namwook Lee</Text>
-      <Text style = {styles.name}>이남욱</Text>
-      <Text style = {styles.mail}>sexypepe@berkeley.edu</Text>
+      
+      <View style = {styles.MainContainer}>
+        <View style = {styles.KSEAContainer}>
+          <Image
+            source = {require('../media/ksea-logo.jpg')}
+            style = {styles.KSEALogo}
+            resizeMode = "contain"
+          />
+        </View>
 
-    </View>
+        <View style = {styles.ProfileContainer}>
+          <Image 
+            source = {require('../media/namwook.jpg')}
+            style = {styles.ProfilePhoto}
+            resizeMode = "contain"
+          />
+        </View>
+
+        <View style = {styles.NameContainer}>
+          <Text style = {styles.name}>Andrew Namwook Lee</Text>
+          <Text style = {styles.name}>이남욱</Text>
+          <Text style = {styles.mail}>sexypepe@berkeley.edu</Text>
+        </View>
+
+        <View style = {styles.InfoContainer}>
+          <Text style = {styles.major}>Major: Rizzology</Text>
+          <Text style = {styles.info}>가오리러버</Text>
+        </View>
+      </View>
   </View>
   );
 };
@@ -50,38 +61,57 @@ const styles = StyleSheet.create({
   },
   MainContainer: {
     width: '80%', // 80% of Screen Width
-    aspectRatio: 0.5, // Height & Width Ratio
+    aspectRatio: 0.55, // Height & Width Ratio
     justifyContent: 'center',
     alignItems: 'center', 
+    flexDirection: 'column',
 
     backgroundColor: '#000',
     borderWidth: 2,
     borderColor: '#FFF'
   },
   KSEAContainer: {
-    flex: 1,
+    flex: 0.5,
+    marginBottom: 20,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
   KSEALogo: {
-    width: 100,
-    height: 100, 
+    width: 75,
+    height: 75, 
+  },
+  ProfileContainer: {
+    flex: 2,
   },
   ProfilePhoto: {
-    width: 250,
-    height: 250,
+    width: '90%',
+    height: '90%', 
     aspectRatio: 1,
+  },
+  NameContainer: {
+    flex: 1
   },
   name: {
     fontSize: 25,
-    marginTop: 10,
-    marginBottom: 10, 
+    marginTop: 5,
+    marginBottom: 5, 
     color: 'white',
   },
   mail: {
     fontSize: 15,
     marginTop: 5,
     marginBottom: 15,
+    color: 'white',
+  },
+  InfoContainer: {
+    flex: 1
+  },
+  major: {
+    fontSize: 20,
+    color: 'white',
+  },
+  info: {
+    fontSize: 20,
     color: 'white',
   }
 })
