@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   const goProfile = () => {
-    navigation.navigate("ProfileScreen");
+    navigation.navigate("Profile");
   };
 
   const goLeaderboard = () => {
-    navigation.navigate("LeaderboardScreen");
+    navigation.navigate("Leaderboard");
   };
 
   const renderCalendar = () => {
