@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
+import * as utils from '../utils/FileUtils.js';
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,12 @@ const SignupScreen = ({ navigation }) => {
     }
 
     navigation.navigate("Login");
+    appendSignup({email, password, major, birthdate});
+  };
+
+  const appendSignup = ({id, pw, maj, bday}) => {
+    const tokenString = {email: id, password: pw, major: maj, birthdate: bday};
+    utils.saveFile("src/loginDatabase.txt", tokenString);
   };
 
   return (

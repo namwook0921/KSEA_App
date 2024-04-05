@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "KSEA_App",
+    "slug": "ksea_app",
+    "version": "0.0.1",
+    "sdkVersion": "50.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}
