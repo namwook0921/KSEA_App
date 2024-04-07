@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, Button, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, TouchableOpacity } from "react-native";
 
 const ProfileScreen = ({navigation}) => {
     const goHome = () => {
@@ -8,9 +8,12 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <View style = {styles.EntireContainer}>
-      <View style = {styles.BackContainer}>
-        <Button title = "Back" onPress = {goHome} />
-      </View>
+      <TouchableOpacity onPress = {goHome}>
+        <Image
+          source = {require("../media/icons8-back-100.png")}
+          style = {styles.BackIcon}
+        />
+      </TouchableOpacity>
       
       <View style = {styles.MainContainer}>
         <View style = {styles.KSEAContainer}>
@@ -50,6 +53,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000',
+  },
+  BackIcon: {
+    width: 50,
+    height: 50,
   },
   BackContainer: {
     position: 'absolute',
