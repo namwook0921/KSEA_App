@@ -1,19 +1,28 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const ProfileScreen = ({navigation}) => {
     const goHome = () => {
         navigation.navigate("Home")
     }
 
+    var engName = "Andrew Namwook Lee"
+    var krName = "이남욱"
+    var mail = "sexypepe@berkeley.edu"
+
+    var major = "CS"
+    var note = "KSEA App Development"
+
   return (
     <View style = {styles.EntireContainer}>
-      <TouchableOpacity onPress = {goHome}>
-        <Image
-          source = {require("../media/icons8-back-100.png")}
-          style = {styles.BackIcon}
-        />
-      </TouchableOpacity>
+      <View style = {styles.BackContainer}>
+        <TouchableOpacity onPress = {goHome}>
+          <Image
+            source = {require("../media/icons8-back-100.png")}
+            style = {styles.BackIcon}
+          />
+        </TouchableOpacity>
+      </View>
       
       <View style = {styles.MainContainer}>
         <View style = {styles.KSEAContainer}>
@@ -33,14 +42,14 @@ const ProfileScreen = ({navigation}) => {
         </View>
 
         <View style = {styles.NameContainer}>
-          <Text style = {styles.name}>Andrew Namwook Lee</Text>
-          <Text style = {styles.name}>이남욱</Text>
-          <Text style = {styles.mail}>sexypepe@berkeley.edu</Text>
+          <Text style = {styles.name}>{engName}</Text>
+          <Text style = {styles.name}>{krName}</Text>
+          <Text style = {styles.mail}>{mail}</Text>
         </View>
 
         <View style = {styles.InfoContainer}>
-          <Text style = {styles.major}>Major: Rizzology</Text>
-          <Text style = {styles.info}>가오리러버</Text>
+          <Text style = {styles.major}>{major}</Text>
+          <Text style = {styles.info}>{note}</Text>
         </View>
       </View>
   </View>
@@ -54,17 +63,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#000',
   },
-  BackIcon: {
-    width: 50,
-    height: 50,
-  },
   BackContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
     width: 100, 
     height: 100,
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    marginLeft: 10,
+    marginTop: 30,
+  },
+  BackIcon: {
+    width: 30,
+    height: 30,
   },
   MainContainer: {
     width: '80%', // 80% of Screen Width
