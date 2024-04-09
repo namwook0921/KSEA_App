@@ -31,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
         <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
         <View style={styles.dateTextContainter}>
           <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>
-          <Text style={styles.dateText}>(Wed)</Text>
+          {/* <Text style={styles.dateText}>{new Date().}</Text> */}
         </View>
       </View>
 
