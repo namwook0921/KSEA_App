@@ -1,15 +1,50 @@
-import React from "react";
-import { View, Text, Image, Button, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const ProfileScreen = ({navigation}) => {
-    const goHome = () => {
-        navigation.navigate("Home")
-    }
+  /* Profile in Dictionary */
+  const [profile, setProfile] = useState({ 
+    engName: '',
+    krName: '',
+    mail: '',
+    major: '',
+    note: ''
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = firebase.auth().currentUser;
+
+      if (user) {
+        const userId = user.uid // Get User ID
+        const db = firebase.firestore();
+        const userRef = db.collection('users').doc(/* User ID */);
+        const doc = await userRef.get();
+        if (doc.exists) {
+          setProfile(doc.data());
+        }
+      }
+    };
+    fetchData();
+  }, []);
+
+  const goHome = () => {
+    navigation.navigate("Home")
+  }
 
   return (
     <View style = {styles.EntireContainer}>
       <View style = {styles.BackContainer}>
-        <Button title = "Back" onPress = {goHome} />
+        <TouchableOpacity onPress = {goHome}>
+          <Image
+            source = {require("../media/icons8-back-100.png")}
+            style = {styles.BackIcon}
+          />
+        </TouchableOpacity>
       </View>
       
       <View style = {styles.MainContainer}>
@@ -30,14 +65,14 @@ const ProfileScreen = ({navigation}) => {
         </View>
 
         <View style = {styles.NameContainer}>
-          <Text style = {styles.name}>Andrew Namwook Lee</Text>
-          <Text style = {styles.name}>이남욱</Text>
-          <Text style = {styles.mail}>sexypepe@berkeley.edu</Text>
+          <Text style = {styles.name}>{engName}</Text>
+          <Text style = {styles.name}>{krName}</Text>
+          <Text style = {styles.mail}>{mail}</Text>
         </View>
 
         <View style = {styles.InfoContainer}>
-          <Text style = {styles.major}>Major: Rizzology</Text>
-          <Text style = {styles.info}>가오리러버</Text>
+          <Text style = {styles.major}>{major}</Text>
+          <Text style = {styles.info}>{note}</Text>
         </View>
       </View>
   </View>
@@ -57,7 +92,13 @@ const styles = StyleSheet.create({
     left: 0,
     width: 100, 
     height: 100,
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    marginLeft: 10,
+    marginTop: 30,
+  },
+  BackIcon: {
+    width: 30,
+    height: 30,
   },
   MainContainer: {
     width: '80%', // 80% of Screen Width
