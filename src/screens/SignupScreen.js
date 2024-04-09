@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
+import auth from "@react-native-firebase/auth";
+import FirestoreService from "../utils/FirestoreService.js";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -25,15 +27,31 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
-    navigation.navigate("Login");
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const uid = userCredential.user.uid;
+        return FirestoreService.createUserProfile(uid, {
+          email: email,
+          major: major,
+          birthdate: birthdate,
+        });
+      })
+      .then(() => {
+        Alert.alert("Success", "Account created and data saved successfully.");
+        navigation.navigate("Login");
+      })
+      .catch((error) => {
+        Alert.alert("Signup failed", error.message);
+      });
   };
 
   return (
     <View style={styles.container}>
-      <Image 
-        source = {require('../media/ksea-logo.jpg')}
-        style = {styles.imageStyle}
-        resizeMode = "contain"
+      <Image
+        source={require("../media/ksea-logo.jpg")}
+        style={styles.imageStyle}
+        resizeMode="contain"
       />
       <Text style={styles.title}>Signup</Text>
       <TextInput
@@ -81,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#000',
+    backgroundColor: "#000",
   },
   imageStyle: {
     width: 100,
@@ -96,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    color: 'white',
+    color: "white",
     borderColor: "#ccc",
     borderRadius: 5,
   },

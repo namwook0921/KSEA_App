@@ -1,5 +1,7 @@
 // LoginScreen.js
 import React, { useState } from "react";
+import auth from "@react-native-firebase/auth";
+// import FirestoreService from "../utils/FirestoreService.js";
 import {
   View,
   Text,
