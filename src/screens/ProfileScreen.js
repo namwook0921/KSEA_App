@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 const ProfileScreen = ({navigation}) => {
-    const goHome = () => {
-        navigation.navigate("Home")
-    }
+  /* Profile in Dictionary */
+  const [profile, setProfile] = useState({ 
+    engName: '',
+    krName: '',
+    mail: '',
+    major: '',
+    note: ''
+  });
 
-    var engName = "Andrew Namwook Lee"
-    var krName = "이남욱"
-    var mail = "sexypepe@berkeley.edu"
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = firebase.auth().currentUser;
 
-    var major = "CS"
-    var note = "KSEA App Development"
+      if (user) {
+        const userId = user.uid // Get User ID
+        const db = firebase.firestore();
+        const userRef = db.collection('users').doc(/* User ID */);
+        const doc = await userRef.get();
+        if (doc.exists) {
+          setProfile(doc.data());
+        }
+      }
+    };
+    fetchData();
+  }, []);
+
+  const goHome = () => {
+    navigation.navigate("Home")
+  }
 
   return (
     <View style = {styles.EntireContainer}>
