@@ -1,6 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
+// Example values
+const EXAMPLEUPCOMINGEVENTS =
+  "Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)";
+const EXAMPLEPOINTS = 67;
+
 const HomeScreen = ({ navigation }) => {
   const goProfile = () => {
     navigation.navigate("Profile");
@@ -37,9 +42,7 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
-        <Text style={styles.upcomingEventsText}>
-          Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)
-        </Text>
+        <Text style={styles.upcomingEventsText}>{EXAMPLEUPCOMINGEVENTS}</Text>
       </View>
 
       {/* Calendar Here */}
@@ -53,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
             style={styles.leaderboardIcon}
           />
         </TouchableOpacity>
-        <Text style={styles.pointsText}>My KSEA Points: 67</Text>
+        <Text style={styles.pointsText}>My KSEA Points: {EXAMPLEPOINTS}</Text>
       </View>
     </View>
   );
