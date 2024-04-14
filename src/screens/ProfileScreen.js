@@ -27,15 +27,15 @@ const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.MainContainer}>
-        <View style={styles.KSEAContainer}>
+      <View style={styles.KSEAContainer}>
           <Image
             source={require("../media/ksea-logo.jpg")}
             style={styles.KSEALogo}
             resizeMode="contain"
           />
-        </View>
+      </View>
 
+      <View style={styles.MainContainer}>
         <View style={styles.ProfileContainer}>
           <Image
             source={require("../media/namwook.jpg")}
