@@ -5,19 +5,11 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 const ProfileScreen = ({ navigation }) => {
   /* Profile in Dictionary */
   const [profile, setProfile] = useState({
-<<<<<<< HEAD
-    engName: "Andrew Namwook Lee",
-    krName: "이남욱",
-    mail: "sexypepe@berkeley.edu",
-    major: "Rizzology",
-    note: "Sexy Pepe",
-=======
     engName: "",
     krName: "",
     mail: "",
     major: "",
     note: "",
->>>>>>> origin/datacontext
   });
 
   const goHome = () => {
@@ -35,40 +27,15 @@ const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-<<<<<<< HEAD
-
-      <View style={styles.MainContainer}>
-        <View style={styles.KSEAContainer}>
-            <Image
-              source={require("../media/ksea-logo.jpg")}
-              style={styles.KSEALogo}
-              resizeMode="contain"
-            />
-        </View>
-
-        <View style={styles.ProfileContainer}>
-          <Image
-            source={require("../media/namwook.jpg")}
-            style={styles.ProfilePhoto}
-=======
       <View style={styles.MainContainer}>
         <View style={styles.KSEAContainer}>
           <Image
             source={require("../media/ksea-logo.jpg")}
             style={styles.KSEALogo}
->>>>>>> origin/datacontext
             resizeMode="contain"
           />
         </View>
 
-<<<<<<< HEAD
-        <View style={styles.NameContainer}>
-          <Text style={styles.name}>{profile.engName}</Text>
-          <Text style={styles.name}>{profile.krName}</Text>
-          <Text style={styles.mail}>{profile.mail}</Text>
-        </View>
-
-=======
         <View style={styles.ProfileContainer}>
           <Image
             source={require("../media/namwook.jpg")}
@@ -83,7 +50,6 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.mail}>{profile.mail}</Text>
         </View>
 
->>>>>>> origin/datacontext
         <View style={styles.InfoContainer}>
           <Text style={styles.major}>{profile.major}</Text>
           <Text style={styles.info}>{profile.note}</Text>
@@ -115,8 +81,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-<<<<<<< HEAD
-=======
   MainContainer: {
     width: "80%", // 80% of Screen Width
     aspectRatio: 0.55, // Height & Width Ratio
@@ -128,26 +92,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#FFF",
   },
->>>>>>> origin/datacontext
   KSEAContainer: {
     flex: 0.5,
     marginBottom: 20,
     justifyContent: "flex-start",
     alignItems: "stretch",
-<<<<<<< HEAD
-  },
-  MainContainer: {
-    width: "80%", // 80% of Screen Width
-    aspectRatio: 0.55, // Height & Width Ratio
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-
-    backgroundColor: "#000",
-    borderWidth: 2,
-    borderColor: "#FFF",
-=======
->>>>>>> origin/datacontext
   },
   KSEALogo: {
     width: 75,
