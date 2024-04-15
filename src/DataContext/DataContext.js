@@ -24,7 +24,7 @@ export const DataProvider = ({ children }) => {
     constructor(name, type, date, location, points, note) {
       this.name = name;
       this.type = type;
-      this.date = date;
+      this.date = new Date(date);
       this.location = location;
       this.points = points;
       this.note = note;
@@ -34,20 +34,29 @@ export const DataProvider = ({ children }) => {
   const BANQUET = new Event(
     "Banquet",
     "Internal",
-    "4/28 (Sun)",
+    "2024-04-28",
     "725 Gilman St",
-    "N/A",
+    0,
     "Event Fee: $20 \nDress Code: Formal \nItinerary: Dinner, Casino theme games, Raffle \n+1s available"
+  );
+
+  const GM4 = new Event(
+    "GM #4",
+    "General Meeting",
+    "2024-04-19",
+    "Dwinelle",
+    10,
+    "Itinerary: FoG Presentation"
   );
 
   const [data, setData] = useState({
     members: [],
     executives: [],
-    events: [BANQUET],
+    events: [BANQUET, GM4],
   });
 
   const addEvent = (name, type, date, location, points, note) => {
-    const newEvent = Event(name, type, date, location, points, note);
+    const newEvent = new Event(name, type, date, location, points, note);
     setData((prevData) => ({
       ...prevData,
       events: [...prevData.events, newEvent],

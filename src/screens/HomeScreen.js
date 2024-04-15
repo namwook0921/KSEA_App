@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { useData } from "../DataContext/DataContext";
 
 // Example values
 const EXAMPLEUPCOMINGEVENTS =
@@ -7,6 +8,14 @@ const EXAMPLEUPCOMINGEVENTS =
 const EXAMPLEPOINTS = 67;
 
 const HomeScreen = ({ navigation }) => {
+  const { data } = useData();
+
+  const now = new Date();
+
+  const futureEvents = data.events
+    .filter((event) => event.date >= now)
+    .sort((a, b) => a.date - b.date);
+
   const goProfile = () => {
     navigation.navigate("Profile");
   };
@@ -42,7 +51,18 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
-        <Text style={styles.upcomingEventsText}>{EXAMPLEUPCOMINGEVENTS}</Text>
+        <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
+        {data.events.map((event, index) => (
+          <Text key={index} style={styles.upcomingEventsText}>
+            {event.name} (
+            {event.date.toLocaleDateString("en-US", {
+              weekday: "long",
+              month: "numeric",
+              day: "numeric",
+            })}
+            ){index < data.events.length - 1 ? ", " : ""}
+          </Text>
+        ))}
       </View>
 
       {/* Calendar Here */}
@@ -99,8 +119,8 @@ const styles = StyleSheet.create({
   },
   upcomingEventsText: {
     color: "#ffffff",
-    fontSize: 18,
-    // fontWeight: "bold",
+    fontSize: 22,
+    fontWeight: "bold",
   },
   // calendarContainer: {
   // },
