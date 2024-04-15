@@ -8,9 +8,9 @@ const ProfileScreen = ({ navigation }) => {
     title: "PEPE Mingles",
     date: "04/14/2024",
     type: "Mingles",
-    attendance: true,
+    attendance: "Mandatory",
     points: 0,
-    note: "",
+    note: "Congratulate Sexy Pepe",
     register_link: "https://example.com/register",
 });
 
@@ -46,6 +46,10 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.InfoContainer}>
           <Text style={styles.InfoText}>{event.date}</Text>
           <Text style={styles.InfoText}>{event.type}</Text>
+          <Text style={styles.InfoText}>{event.attendance}</Text>
+          <Text style={styles.InfoText}>{event.points}</Text>
+          <Text style={styles.InfoText}>{event.note}</Text>
+          <Text style={styles.InfoText}>{event.register_link}</Text>
         </View>
       </View>
     </View>
