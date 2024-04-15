@@ -7,7 +7,6 @@ import {
   TextInput,
   Button,
   StyleSheet,
-  KeyboardAvoidingView,
 } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
