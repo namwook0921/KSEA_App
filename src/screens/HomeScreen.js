@@ -1,5 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { useData } from "../DataContext/DataContext";
+
+// Example values
+const EXAMPLEUPCOMINGEVENTS =
+  "Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)";
+const EXAMPLEPOINTS = 67;
 
 // Example values
 const EXAMPLEUPCOMINGEVENTS =
@@ -7,6 +13,14 @@ const EXAMPLEUPCOMINGEVENTS =
 const EXAMPLEPOINTS = 67;
 
 const HomeScreen = ({ navigation }) => {
+  const { data } = useData();
+
+  const now = new Date();
+
+  const futureEvents = data.events
+    .filter((event) => event.date >= now)
+    .sort((a, b) => a.date - b.date);
+
   const goProfile = () => {
     navigation.navigate("Profile");
   };
@@ -108,8 +122,8 @@ const styles = StyleSheet.create({
   },
   upcomingEventsText: {
     color: "#ffffff",
-    fontSize: 18,
-    // fontWeight: "bold",
+    fontSize: 22,
+    fontWeight: "bold",
   },
   // calendarContainer: {
   // },
