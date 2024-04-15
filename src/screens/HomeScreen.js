@@ -14,6 +14,10 @@ const HomeScreen = ({ navigation }) => {
   const goLeaderboard = () => {
     navigation.navigate("Leaderboard");
   };
+  
+  const goEvents = () => {
+    navigation.navigate("Event");
+  }
 
   const renderCalendar = () => {
     return (
@@ -33,6 +37,11 @@ const HomeScreen = ({ navigation }) => {
             style={styles.profileIcon}
           />
         </TouchableOpacity>
+
+        <TouchableOpacity onPress = {goEvents}>
+          <Text style = {styles.dateText}>Events</Text>
+        </TouchableOpacity>
+        
         <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
         <View style={styles.dateTextContainter}>
           <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>

@@ -5,11 +5,11 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 const ProfileScreen = ({ navigation }) => {
   /* Profile in Dictionary */
   const [profile, setProfile] = useState({
-    engName: "",
-    krName: "",
-    mail: "",
-    major: "",
-    note: "",
+    engName: "Andrew Namwook Lee",
+    krName: "이남욱",
+    mail: "sexypepe@berkeley.edu",
+    major: "Rizzology",
+    note: "Sexy Pepe",
   });
 
   const goHome = () => {
@@ -27,15 +27,16 @@ const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.KSEAContainer}>
-          <Image
-            source={require("../media/ksea-logo.jpg")}
-            style={styles.KSEALogo}
-            resizeMode="contain"
-          />
-      </View>
 
       <View style={styles.MainContainer}>
+        <View style={styles.KSEAContainer}>
+            <Image
+              source={require("../media/ksea-logo.jpg")}
+              style={styles.KSEALogo}
+              resizeMode="contain"
+            />
+        </View>
+
         <View style={styles.ProfileContainer}>
           <Image
             source={require("../media/namwook.jpg")}
@@ -74,11 +75,18 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: "#000",
     marginLeft: 10,
+    marginRight: 10,
     marginTop: 30,
   },
   BackIcon: {
     width: 30,
     height: 30,
+  },
+  KSEAContainer: {
+    flex: 0.5,
+    marginBottom: 20,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
   },
   MainContainer: {
     width: "80%", // 80% of Screen Width
@@ -90,12 +98,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     borderWidth: 2,
     borderColor: "#FFF",
-  },
-  KSEAContainer: {
-    flex: 0.5,
-    marginBottom: 20,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
   },
   KSEALogo: {
     width: 75,
