@@ -49,8 +49,15 @@ export const DataProvider = ({ children }) => {
     "Itinerary: FoG Presentation"
   );
 
+  const NAMWOOK = new User(
+    "Namwook",
+    "sexypepe@berkeley.edu",
+    "sexypepe",
+    "member"
+  )
+
   const [data, setData] = useState({
-    members: [],
+    members: [NAMWOOK],
     executives: [],
     events: [BANQUET, GM4],
   });
