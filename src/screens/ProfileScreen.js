@@ -47,7 +47,7 @@ const ProfileScreen = ({ navigation }) => {
 
         <View style={styles.InfoContainer}>
           <Text style={styles.major}>{profile.major}</Text>
-          <Text style={styles.info}>{profile.class}</Text>
+          <Text style={styles.info}>{profile.grade}</Text>
           <Text style={styles.info}>{profile.fog}</Text>
         </View>
       </View>
