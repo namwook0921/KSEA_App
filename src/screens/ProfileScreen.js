@@ -14,16 +14,16 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.EntireContainer}>
-      <View style={styles.BackContainer}>
-        <TouchableOpacity onPress={goHome}>
-          <Image
-            source={require("../media/icons8-back-100.png")}
-            style={styles.BackIcon}
-          />
-        </TouchableOpacity>
-      </View>
-
       <View style={styles.MainContainer}>
+        <View style={styles.BackContainer}>
+          <TouchableOpacity onPress={goHome}>
+            <Image
+              source={require("../media/icons8-back-100.png")}
+              style={styles.BackIcon}
+            />
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.KSEAContainer}>
           <Image
             source={require("../media/ksea-logo.jpg")}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 30,
+    marginTop: 10,
   },
   BackIcon: {
     width: 30,
