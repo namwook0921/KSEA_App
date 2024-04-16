@@ -6,15 +6,15 @@ export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
   class User {
-    constructor(name, email, password, type) {
+    constructor(name, email, password, major, type) {
       this.name = name;
       this.email = email;
       this.password = password;
+      this.major = major;
       //   type for member/exec
       this.type = type;
       this.points = 0;
-      this.major = "";
-      this.class = "";
+      this.grade = "";
       this.fog = "";
       this.social = -1;
     }
@@ -50,12 +50,14 @@ export const DataProvider = ({ children }) => {
   );
 
   const NAMWOOK = new User(
-    "Namwook",
+    "Namwook", // Name
     "sexypepe@berkeley.edu",
     "sexypepe",
-    "member"
+    "Rizzology",
+    "member",
+    fog = "App Dev",
+    grade = "Sophomore"
   )
-
   const [data, setData] = useState({
     members: [NAMWOOK],
     executives: [],
