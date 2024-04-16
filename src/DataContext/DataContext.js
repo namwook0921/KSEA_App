@@ -6,7 +6,7 @@ export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
   class User {
-    constructor(name, email, password, major, type) {
+    constructor(name, email, password, major, type, fog, grade) {
       this.name = name;
       this.email = email;
       this.password = password;
@@ -55,8 +55,8 @@ export const DataProvider = ({ children }) => {
     "sexypepe",
     "Rizzology",
     "member",
-    fog = "App Dev",
-    grade = "Sophomore"
+    "App Dev",
+    "Sophomore"
   )
   const [data, setData] = useState({
     members: [NAMWOOK],
