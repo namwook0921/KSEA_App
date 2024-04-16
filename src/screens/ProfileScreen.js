@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useData } from "../DataContext/DataContext";
 
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const ProfileScreen = ({ navigation }) => {
   /* Profile in Dictionary */
-  const [profile, setProfile] = useState({
-    engName: "",
-    krName: "",
-    mail: "",
-    major: "",
-    note: "",
-  });
+  const { data } = useData();
+  const profile = data.members[0]; // Assuming you want to display the first member's profile
 
   const goHome = () => {
     navigation.navigate("Home");
@@ -45,14 +41,14 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.NameContainer}>
-          <Text style={styles.name}>{profile.engName}</Text>
-          <Text style={styles.name}>{profile.krName}</Text>
-          <Text style={styles.mail}>{profile.mail}</Text>
+          <Text style={styles.name}>{profile.name}</Text>
+          <Text style={styles.mail}>{profile.email}</Text>
         </View>
 
         <View style={styles.InfoContainer}>
           <Text style={styles.major}>{profile.major}</Text>
-          <Text style={styles.info}>{profile.note}</Text>
+          <Text style={styles.info}>{profile.class}</Text>
+          <Text style={styles.info}>{profile.fog}</Text>
         </View>
       </View>
     </View>

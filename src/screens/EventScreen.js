@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useData } from "../DataContext/DataContext";
 
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const ProfileScreen = ({ navigation }) => {
   /* EVent in Dictionary */
-  const [event, setEvent] = useState({
-    title: "PEPE Mingles",
-    date: "04/14/2024",
-    type: "Mingles",
-    attendance: "Mandatory",
-    points: 0,
-    note: "Congratulate Sexy Pepe",
-    register_link: "https://example.com/register",
-});
+  const { data } = useData();
+  const event = data.events[0]; // Assuming you want to display the first event
 
   const goHome = () => {
     navigation.navigate("Home");
@@ -40,13 +34,13 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.TitleContainer}>
-          <Text style={styles.TitleText}>{event.title}</Text>
+          <Text style={styles.TitleText}>{event.name}</Text>
         </View>
 
         <View style={styles.InfoContainer}>
-          <Text style={styles.InfoText}>{event.date}</Text>
+          <Text style={styles.InfoText}>{event.date.toDateString()}</Text>
           <Text style={styles.InfoText}>{event.type}</Text>
-          <Text style={styles.InfoText}>{event.attendance}</Text>
+          <Text style={styles.InfoText}>{event.location}</Text>
           <Text style={styles.InfoText}>{event.points}</Text>
           <Text style={styles.InfoText}>{event.note}</Text>
           <Text style={styles.InfoText}>{event.register_link}</Text>
