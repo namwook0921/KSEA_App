@@ -20,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
   //parseTextFile("../loginDatabase.txt");
 
   const handleLogin = () => {
-    if (email !== id && password !== pw) {
+    if (email == id && password == pw) {
       navigation.navigate("Home");
     } else {
       alert("Invalid email or password. Please try again.");
