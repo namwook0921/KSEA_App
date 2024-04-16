@@ -22,8 +22,10 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = () => {
     if (email == id && password == pw) {
       navigation.navigate("Home");
+    } else if (email == "" || password == "") {
+      alert("Invalid email or password. Please try again.")
     } else {
-      alert("Invalid email or password. Please try again.");
+      alert("Incorrect email or password.");
     }
   };
 

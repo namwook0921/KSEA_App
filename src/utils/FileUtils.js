@@ -65,27 +65,23 @@ export async function loadFile(filename) {
 
 // Function to parse a text file
 export async function parseTextFile(filename) {
-    // Create a new FileReader object
-    var reader = new FileReader();
+  // Create a new FileReader object
+  var reader = new FileReader();
 
-    // Define a callback function to handle the file reading
-    reader.onload = function(event) {
-        // Access the file contents
-        var contents = event.target.result;
+  // Define a callback function to handle the file reading
+  reader.onload = function(event) {
+    // Access the file contents
+    var contents = event.target.result;
 
-        // Split the contents into rows by newline character ("\n")
-        var rows = contents.split('\n');
+    // Split the contents into rows by newline character ("\n")
+    var rows = contents.split('\n');
 
-        // Iterate over each row
-        rows.forEach(function(row) {
-            // Split the row into words by space character (" ")
-            var words = row.split(' ');
-
-            // Process the words (you can customize this part based on your requirements)
-            console.log("Words in row:", words);
-        });
+    // Iterate over each row
+    rows.forEach(function(row) {
+        // Split the row into words by space character (" ")
+        var words = row.split(' ');
+        console.log("Words in row:", words);
+      });
     };
-
-    // Read the file as text
     reader.readAsText(file);
 }
