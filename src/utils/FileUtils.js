@@ -63,13 +63,29 @@ export async function loadFile(filename) {
   }
 }
 
-// // Example usage:
-// const filename = 'loginDatabase.txt';
-// const newLoginInfo = { username: 'user1', password: 'password1' };
+// Function to parse a text file
+export async function parseTextFile(filename) {
+    // Create a new FileReader object
+    var reader = new FileReader();
 
-// // Save new login information
-// saveFile(filename, newLoginInfo);
+    // Define a callback function to handle the file reading
+    reader.onload = function(event) {
+        // Access the file contents
+        var contents = event.target.result;
 
-// // Load login information
-// const loginDatabase = loadFile(filename);
-// console.log('Login Database:', loginDatabase);
+        // Split the contents into rows by newline character ("\n")
+        var rows = contents.split('\n');
+
+        // Iterate over each row
+        rows.forEach(function(row) {
+            // Split the row into words by space character (" ")
+            var words = row.split(' ');
+
+            // Process the words (you can customize this part based on your requirements)
+            console.log("Words in row:", words);
+        });
+    };
+
+    // Read the file as text
+    reader.readAsText(file);
+}

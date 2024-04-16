@@ -10,12 +10,17 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 
+const id = "kseaatcal@gmail.com";
+const pw = "HelloWorld!"
+
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //parseTextFile("../loginDatabase.txt");
+
   const handleLogin = () => {
-    if (email !== "" && password !== "") {
+    if (email !== id && password !== pw) {
       navigation.navigate("Home");
     } else {
       alert("Invalid email or password. Please try again.");
