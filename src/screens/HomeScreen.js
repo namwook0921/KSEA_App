@@ -1,6 +1,12 @@
+
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useData } from "../DataContext/DataContext";
+
+// Example values
+const EXAMPLEUPCOMINGEVENTS =
+  "Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)";
+const EXAMPLEPOINTS = 67;
 
 const HomeScreen = ({ navigation }) => {
   const { data } = useData();
@@ -18,10 +24,6 @@ const HomeScreen = ({ navigation }) => {
   const goLeaderboard = () => {
     navigation.navigate("Leaderboard");
   };
-  
-  const goEvents = () => {
-    navigation.navigate("Event");
-  }
 
   const renderCalendar = () => {
     return (
@@ -41,11 +43,6 @@ const HomeScreen = ({ navigation }) => {
             style={styles.profileIcon}
           />
         </TouchableOpacity>
-
-        <TouchableOpacity onPress = {goEvents}>
-          <Text style = {styles.dateText}>Events</Text>
-        </TouchableOpacity>
-        
         <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
         <View style={styles.dateTextContainter}>
           <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>
@@ -55,7 +52,18 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
-        <Text style={styles.upcomingEventsText}>{EXAMPLEUPCOMINGEVENTS}</Text>
+        <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
+        {data.events.map((event, index) => (
+          <Text key={index} style={styles.upcomingEventsText}>
+            {event.name} (
+            {event.date.toLocaleDateString("en-US", {
+              weekday: "long",
+              month: "numeric",
+              day: "numeric",
+            })}
+            ){index < data.events.length - 1 ? ", " : ""}
+          </Text>
+        ))}
       </View>
 
       {/* Calendar Here */}
