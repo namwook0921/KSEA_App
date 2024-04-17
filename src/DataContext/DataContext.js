@@ -14,8 +14,8 @@ export const DataProvider = ({ children }) => {
       //   type for member/exec
       this.type = type;
       this.points = 0;
-      this.grade = "";
-      this.fog = "";
+      this.grade = grade;
+      this.fog = fog;
       this.social = -1;
     }
   }
