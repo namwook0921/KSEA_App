@@ -21,6 +21,10 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate("Profile");
   };
 
+  const goEvent = () => {
+    navigation.navigate("Event");
+  };
+
   const goLeaderboard = () => {
     navigation.navigate("Leaderboard");
   };
@@ -52,6 +56,9 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
+        <TouchableOpacity onPress={goEvent}>
+          <Text style = {styles.upcomingEventsText}>EVENTS</Text>
+        </TouchableOpacity>
         <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
         {data.events.map((event, index) => (
           <Text key={index} style={styles.upcomingEventsText}>

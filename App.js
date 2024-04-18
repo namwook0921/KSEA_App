@@ -6,6 +6,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import LeaderboardScreen from "./src/screens/LeaderboardScreen";
+import EventScreen from "./src/screens/EventScreen";
 import { DataContext, DataProvider } from "./src/DataContext/DataContext";
 
 const Stack = createStackNavigator();
@@ -19,6 +20,7 @@ const App = () => {
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Event" component={EventScreen} />
           <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
         </Stack.Navigator>
       </NavigationContainer>
