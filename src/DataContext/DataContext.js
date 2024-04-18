@@ -21,13 +21,14 @@ export const DataProvider = ({ children }) => {
   }
 
   class Event {
-    constructor(name, type, date, location, points, note) {
+    constructor(name, type, date, location, points, note, register_link) {
       this.name = name;
       this.type = type;
       this.date = new Date(date);
       this.location = location;
       this.points = points;
       this.note = note;
+      this.register_link = register_link;
     }
   }
 
@@ -37,7 +38,8 @@ export const DataProvider = ({ children }) => {
     "2024-04-28",
     "725 Gilman St",
     0,
-    "Event Fee: $20 \nDress Code: Formal \nItinerary: Dinner, Casino theme games, Raffle \n+1s available"
+    "Event Fee: $20 \nDress Code: Formal \nItinerary: Dinner, Casino theme games, Raffle \n+1s available",
+    "https://forms.gle/G6GmfoDCofitvS5Q7"
   );
 
   const GM4 = new Event(
@@ -46,7 +48,8 @@ export const DataProvider = ({ children }) => {
     "2024-04-19",
     "Dwinelle",
     10,
-    "Itinerary: FoG Presentation"
+    "Itinerary: FoG Presentation",
+    "None"
   );
 
   const NAMWOOK = new User(
