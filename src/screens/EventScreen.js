@@ -14,17 +14,15 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.EntireContainer}>
-      <View style={styles.BackContainer}>
-        <TouchableOpacity onPress={goHome}>
-          <Image
-            source={require("../media/icons8-back-100.png")}
-            style={styles.BackIcon}
-          />
-        </TouchableOpacity>
-      </View>
-
-
       <View style={styles.MainContainer}>
+        <View style={styles.BackContainer}>
+          <TouchableOpacity onPress={goHome}>
+            <Image
+              source={require("../media/icons8-back-100.png")}
+              style={styles.BackIcon}
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.KSEAContainer}>
             <Image
               source={require("../media/ksea-logo.jpg")}
