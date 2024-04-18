@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
-import * as utils from '../utils/FileUtils.js';
+import { insertNewData } from '../utils/FileUtils.js';
+import { FILE_PATH } from '../utils/FileUtils.js';
+
+const FILE_NAME = "../../loginDatabase.txt";
 
 const SignupScreen = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [major, setMajor] = useState("");
   const [birthdate, setBirthdate] = useState("");
 
-  const handleSignup = () => {
+  const handleSignup = () => {p
+    // Authenticate valid sign-up info
     if (
       email.trim() === "" ||
       password.trim() === "" ||
@@ -26,13 +31,13 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
-    navigation.navigate("Login");
-    appendSignup({email, password, major, birthdate});
-  };
+    // Concatenate all the Sign-up info to a local Database
+    // String variable that contains all the Account info
+    const token = `${name} ${email} ${password} ${major} ${birthdate}\n`;
+    insertNewData(FILE_PATH, token);
 
-  const appendSignup = ({id, pw, maj, bday}) => {
-    const tokenString = {email: id, password: pw, major: maj, birthdate: bday};
-    utils.saveFile("src/loginDatabase.txt", tokenString);
+    // Then, navigate back to the Login Screen
+    navigation.navigate("Login");
   };
 
   return (
@@ -42,7 +47,16 @@ const SignupScreen = ({ navigation }) => {
         style = {styles.imageStyle}
         resizeMode = "contain"
       />
-      <Text style={styles.title}>Signup</Text>
+      <Text style={[styles.title, { color: 'white' }]}>Signup</Text>
+      <Text style={[styles.label, { color: 'white' }]}>Name (First Last)</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Name"
+        value={name}
+        onChangeText={setName}
+        autoCapitalize="none"
+      />
+      <Text style={[styles.label, { color: 'white' }]}>Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -51,6 +65,7 @@ const SignupScreen = ({ navigation }) => {
         keyboardType="email-address"
         autoCapitalize="none"
       />
+      <Text style={[styles.label, { color: 'white' }]}>Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -58,6 +73,7 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
+      <Text style={[styles.label, { color: 'white' }]}>Confirm Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
@@ -65,12 +81,14 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
+      <Text style={[styles.label, { color: 'white' }]}>Major</Text>
       <TextInput
         style={styles.input}
         placeholder="Major"
         value={major}
         onChangeText={setMajor}
       />
+      <Text style={[styles.label, { color: 'white' }]}>Birthdate (MM/DD/YYYY)</Text>
       <TextInput
         style={styles.input}
         placeholder="Birthdate"
