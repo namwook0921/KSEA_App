@@ -38,11 +38,27 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.InfoContainer}>
-          <Text style={styles.InfoText}>{event.date.toDateString()}</Text>
-          <Text style={styles.InfoText}>{event.type}</Text>
-          <Text style={styles.InfoText}>{event.location}</Text>
-          <Text style={styles.InfoText}>{event.points}</Text>
-          <Text style={styles.InfoText}>{event.note}</Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>
+              Date: </Text>
+            {event.date.toDateString()}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>Type: </Text>
+            {event.type}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>Location: </Text>
+            {event.location}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>Points: </Text> 
+            {event.points}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>Notes: {'\n'}</Text> 
+            {event.note}
+          </Text>
           <Text style={styles.InfoText}>{event.register_link}</Text>
         </View>
       </View>
@@ -73,17 +89,18 @@ const styles = StyleSheet.create({
     height: 30,
   },
   KSEAContainer: {
-    flex: 0.5,
-    marginBottom: 20,
+    flex: 0.3,
+    marginBottom: 10,
     justifyContent: "flex-start",
     alignItems: "stretch",
   },
   MainContainer: {
     width: "80%", // 80% of Screen Width
     aspectRatio: 0.55, // Height & Width Ratio
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
+    paddingHorizontal: 10,
 
     backgroundColor: "#000",
     borderWidth: 2,
@@ -94,7 +111,7 @@ const styles = StyleSheet.create({
     height: 75,
   },
   TitleContainer: {
-    flex: 1,
+    flex: 0.2,
   },
   TitleText: {
     fontSize: 25,
@@ -103,12 +120,17 @@ const styles = StyleSheet.create({
     color: "white",
   },
   InfoContainer: {
-    flex: 1,
+    width: "100%",
+    marginTop: 10,
   },
   InfoText: {
-    fontSize: 20,
+    fontSize: 16,
     color: "white",
-  }
+    marginBottom: 5,
+  },
+  BoldText: {
+    fontWeight: 'bold',
+  },
 });
 
 export default ProfileScreen;
