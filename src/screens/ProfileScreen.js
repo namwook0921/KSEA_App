@@ -6,7 +6,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 const ProfileScreen = ({ navigation }) => {
   /* Profile in Dictionary */
   const { data } = useData();
-  const profile = data.members[0]; // Assuming you want to display the first member's profile
+  const profile = data.currentMember;
 
   const goHome = () => {
     navigation.navigate("Home");
@@ -47,15 +47,15 @@ const ProfileScreen = ({ navigation }) => {
 
         <View style={styles.InfoContainer}>
           <Text style={styles.major}>
-            <Text style = {styles.BoldText}>Major: </Text>
+            <Text style={styles.BoldText}>Major: </Text>
             {profile.major}
           </Text>
-          <Text style={styles.info}> 
-            <Text style = {styles.BoldText}>Grade: </Text>
+          <Text style={styles.info}>
+            <Text style={styles.BoldText}>Grade: </Text>
             {profile.grade}
           </Text>
           <Text style={styles.info}>
-            <Text style = {styles.BoldText}>Focus Group: </Text>
+            <Text style={styles.BoldText}>Focus Group: </Text>
             {profile.fog}
           </Text>
         </View>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   BoldText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

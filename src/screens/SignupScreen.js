@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
-import { insertNewData } from "../utils/FileUtils.js";
-import { FILE_PATH } from "../utils/FileUtils.js";
-
-const FILE_NAME = "../../loginDatabase.txt";
+import { useData } from "../DataContext/DataContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -12,16 +10,18 @@ const SignupScreen = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [major, setMajor] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [grade, setGrade] = useState("");
+  const { data, addUser } = useData();
 
-  const handleSignup = () => {
-    p;
+  const handleSignup = async () => {
     // Authenticate valid sign-up info
     if (
       email.trim() === "" ||
       password.trim() === "" ||
       confirmPassword.trim() === "" ||
       major.trim() === "" ||
-      birthdate.trim() === ""
+      birthdate.trim() === "" ||
+      grade.trim() === ""
     ) {
       alert("All fields are required");
       return;
@@ -32,12 +32,25 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
-    // Concatenate all the Sign-up info to a local Database
-    // String variable that contains all the Account info
-    // const newUser =  = `${name} ${email} ${password} ${major} ${birthdate}\n`;
-    // insertNewData(FILE_PATH, token);
+    try {
+      const users = data.members;
 
-    // Then, navigate back to the Login Screen
+      if (users.some((user) => user.email === email)) {
+        alert("This email is already in use.");
+        return;
+      }
+
+      const newUser = { name, email, password, major, birthdate, grade };
+
+      addUser(newUser);
+
+      alert("User registered successfully!");
+      navigation.navigate("Login");
+    } catch (error) {
+      console.error("Error saving user data:", error);
+      alert("Failed to save user data.");
+    }
+
     navigation.navigate("Login");
   };
 
@@ -98,6 +111,13 @@ const SignupScreen = ({ navigation }) => {
         value={birthdate}
         onChangeText={setBirthdate}
         keyboardType="numeric" // Adjust the keyboard type as needed
+      />
+      <Text style={[styles.label, { color: "white" }]}>Grade</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Grade"
+        value={grade}
+        onChangeText={setGrade}
       />
       <Button title="Signup" onPress={handleSignup} />
     </View>

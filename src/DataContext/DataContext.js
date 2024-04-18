@@ -1,11 +1,11 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const DataContext = createContext();
 
 export const useData = () => useContext(DataContext);
 
 class User {
-  constructor(name, email, password, major, type, fog, grade) {
+  constructor(name, email, password, major, type, fog = "", grade) {
     this.name = name;
     this.email = email;
     this.password = password;
@@ -32,6 +32,32 @@ class Event {
 }
 
 export const DataProvider = ({ children }) => {
+  const loadMembersData = async () => {
+    try {
+      const membersData = await AsyncStorage.getItem("members");
+      if (membersData) {
+        setData((prevData) => ({
+          ...prevData,
+          members: JSON.parse(membersData),
+        }));
+      }
+    } catch (error) {
+      console.error("Failed to load members data from storage:", error);
+    }
+  };
+
+  const saveMembersData = async (members) => {
+    try {
+      await AsyncStorage.setItem("members", JSON.stringify(members));
+    } catch (error) {
+      console.error("Failed to save members data to storage:", error);
+    }
+  };
+
+  useEffect(() => {
+    loadMembersData();
+  }, []);
+
   const BANQUET = new Event(
     "Banquet",
     "Internal",
@@ -67,6 +93,7 @@ export const DataProvider = ({ children }) => {
     executives: [],
     events: [BANQUET, GM4],
     currentIndex: 0,
+    currentMember: NAMWOOK,
   });
 
   const addEvent = (name, type, date, location, points, note) => {
@@ -75,6 +102,15 @@ export const DataProvider = ({ children }) => {
       ...prevData,
       events: [...prevData.events, newEvent],
     }));
+  };
+
+  const addUser = (name, email, password, major, type, grade) => {
+    const newUser = new User(name, email, password, major, type, grade);
+    setData((prevData) => {
+      const updatedMembers = [...prevData.members, newUser];
+      saveMembersData(updatedMembers);
+      return { ...prevData, members: updatedMembers };
+    });
   };
 
   const setCurrentIndex = (index) => {
@@ -89,6 +125,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         addEvent,
+        addUser,
         setCurrentIndex,
       }}
     >
