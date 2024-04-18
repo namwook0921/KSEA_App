@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   LinkText: {
-    color: 'blue',
+    color: '#87CEFA',
     textDecorationLine: 'underline',
   },
 });
