@@ -1,4 +1,3 @@
-
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useData } from "../DataContext/DataContext";
@@ -9,7 +8,7 @@ const EXAMPLEUPCOMINGEVENTS =
 const EXAMPLEPOINTS = 67;
 
 const HomeScreen = ({ navigation }) => {
-  const { data } = useData();
+  const { data, setCurrentIndex } = useData();
 
   const now = new Date();
 
@@ -56,20 +55,26 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
-        <TouchableOpacity onPress={goEvent}>
-          <Text style = {styles.upcomingEventsText}>EVENTS</Text>
-        </TouchableOpacity>
+        <Text style={styles.upcomingEventsText}>EVENTS</Text>
+
         <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
         {data.events.map((event, index) => (
-          <Text key={index} style={styles.upcomingEventsText}>
-            {event.name} (
-            {event.date.toLocaleDateString("en-US", {
-              weekday: "long",
-              month: "numeric",
-              day: "numeric",
-            })}
-            ){index < data.events.length - 1 ? ", " : ""}
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              setCurrentIndex(index);
+              goEvent();
+            }}
+          >
+            <Text key={index} style={styles.upcomingEventsText}>
+              {event.name} (
+              {event.date.toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "numeric",
+                day: "numeric",
+              })}
+              ){index < data.events.length - 1 ? ", " : ""}
+            </Text>
+          </TouchableOpacity>
         ))}
       </View>
 

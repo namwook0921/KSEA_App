@@ -4,34 +4,34 @@ const DataContext = createContext();
 
 export const useData = () => useContext(DataContext);
 
+class User {
+  constructor(name, email, password, major, type, fog, grade) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.major = major;
+    //   type for member/exec
+    this.type = type;
+    this.points = 0;
+    this.grade = grade;
+    this.fog = fog;
+    this.social = -1;
+  }
+}
+
+class Event {
+  constructor(name, type, date, location, points, note, register_link) {
+    this.name = name;
+    this.type = type;
+    this.date = new Date(date);
+    this.location = location;
+    this.points = points;
+    this.note = note;
+    this.register_link = register_link;
+  }
+}
+
 export const DataProvider = ({ children }) => {
-  class User {
-    constructor(name, email, password, major, type, fog, grade) {
-      this.name = name;
-      this.email = email;
-      this.password = password;
-      this.major = major;
-      //   type for member/exec
-      this.type = type;
-      this.points = 0;
-      this.grade = grade;
-      this.fog = fog;
-      this.social = -1;
-    }
-  }
-
-  class Event {
-    constructor(name, type, date, location, points, note, register_link) {
-      this.name = name;
-      this.type = type;
-      this.date = new Date(date);
-      this.location = location;
-      this.points = points;
-      this.note = note;
-      this.register_link = register_link;
-    }
-  }
-
   const BANQUET = new Event(
     "Banquet",
     "Internal",
@@ -60,11 +60,13 @@ export const DataProvider = ({ children }) => {
     "member",
     "App Dev",
     "Sophomore"
-  )
+  );
+
   const [data, setData] = useState({
     members: [NAMWOOK],
     executives: [],
     events: [BANQUET, GM4],
+    currentIndex: 0,
   });
 
   const addEvent = (name, type, date, location, points, note) => {
@@ -75,11 +77,19 @@ export const DataProvider = ({ children }) => {
     }));
   };
 
+  const setCurrentIndex = (index) => {
+    setData((prevData) => ({
+      ...prevData,
+      currentIndex: index,
+    }));
+  };
+
   return (
     <DataContext.Provider
       value={{
         data,
         addEvent,
+        setCurrentIndex,
       }}
     >
       {children}

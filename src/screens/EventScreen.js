@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../DataContext/DataContext";
 
-import { View, Text, Image, TouchableOpacity, StyleSheet, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+} from "react-native";
 
-const ProfileScreen = ({ navigation }) => {
-  /* EVent in Dictionary */
+const EventScreen = ({ navigation }) => {
+  /* Event in Dictionary */
   const { data } = useData();
-  const event = data.events[0]; // Assuming you want to display the first event
+  const event = data.events[data.currentIndex];
 
   const goHome = () => {
     navigation.navigate("Home");
@@ -14,7 +21,7 @@ const ProfileScreen = ({ navigation }) => {
 
   const handleLinkPress = (url) => {
     Linking.openURL(url);
-  }
+  };
 
   return (
     <View style={styles.EntireContainer}>
@@ -28,11 +35,11 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.KSEAContainer}>
-            <Image
-              source={require("../media/ksea-logo.jpg")}
-              style={styles.KSEALogo}
-              resizeMode="contain"
-            />
+          <Image
+            source={require("../media/ksea-logo.jpg")}
+            style={styles.KSEALogo}
+            resizeMode="contain"
+          />
         </View>
 
         <View style={styles.TitleContainer}>
@@ -41,32 +48,32 @@ const ProfileScreen = ({ navigation }) => {
 
         <View style={styles.InfoContainer}>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>
-              Date: </Text>
+            <Text style={styles.BoldText}>Date: </Text>
             {event.date.toDateString()}
           </Text>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>Type: </Text>
+            <Text style={styles.BoldText}>Type: </Text>
             {event.type}
           </Text>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>Location: </Text>
+            <Text style={styles.BoldText}>Location: </Text>
             {event.location}
           </Text>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>Points: </Text> 
+            <Text style={styles.BoldText}>Points: </Text>
             {event.points}
           </Text>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>Notes: {'\n'}</Text> 
+            <Text style={styles.BoldText}>Notes: {"\n"}</Text>
             {event.note}
           </Text>
           <Text style={styles.InfoText}>
-            <Text style = {styles.BoldText}>Registration: {'\n'}</Text>
-            <Text style = {styles.LinkText}
-              onPress = {() => handleLinkPress(event.register_link)}
+            <Text style={styles.BoldText}>Registration: {"\n"}</Text>
+            <Text
+              style={styles.LinkText}
+              onPress={() => handleLinkPress(event.register_link)}
             >
-            {event.register_link}
+              {event.register_link}
             </Text>
           </Text>
         </View>
@@ -138,12 +145,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   BoldText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   LinkText: {
-    color: '#87CEFA',
-    textDecorationLine: 'underline',
+    color: "#87CEFA",
+    textDecorationLine: "underline",
   },
 });
 
-export default ProfileScreen;
+export default EventScreen;
