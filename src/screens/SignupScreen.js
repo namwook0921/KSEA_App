@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
-import { insertNewData } from '../utils/FileUtils.js';
-import { FILE_PATH } from '../utils/FileUtils.js';
+import { insertNewData } from "../utils/FileUtils.js";
+import { FILE_PATH } from "../utils/FileUtils.js";
 
 const FILE_NAME = "../../loginDatabase.txt";
 
@@ -13,7 +13,8 @@ const SignupScreen = ({ navigation }) => {
   const [major, setMajor] = useState("");
   const [birthdate, setBirthdate] = useState("");
 
-  const handleSignup = () => {p
+  const handleSignup = () => {
+    p;
     // Authenticate valid sign-up info
     if (
       email.trim() === "" ||
@@ -33,8 +34,8 @@ const SignupScreen = ({ navigation }) => {
 
     // Concatenate all the Sign-up info to a local Database
     // String variable that contains all the Account info
-    const token = `${name} ${email} ${password} ${major} ${birthdate}\n`;
-    insertNewData(FILE_PATH, token);
+    // const newUser =  = `${name} ${email} ${password} ${major} ${birthdate}\n`;
+    // insertNewData(FILE_PATH, token);
 
     // Then, navigate back to the Login Screen
     navigation.navigate("Login");
@@ -42,13 +43,13 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image 
-        source = {require('../media/ksea-logo.jpg')}
-        style = {styles.imageStyle}
-        resizeMode = "contain"
+      <Image
+        source={require("../media/ksea-logo.jpg")}
+        style={styles.imageStyle}
+        resizeMode="contain"
       />
-      <Text style={[styles.title, { color: 'white' }]}>Signup</Text>
-      <Text style={[styles.label, { color: 'white' }]}>Name (First Last)</Text>
+      <Text style={[styles.title, { color: "white" }]}>Signup</Text>
+      <Text style={[styles.label, { color: "white" }]}>Name (First Last)</Text>
       <TextInput
         style={styles.input}
         placeholder="Name"
@@ -56,7 +57,7 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setName}
         autoCapitalize="none"
       />
-      <Text style={[styles.label, { color: 'white' }]}>Email</Text>
+      <Text style={[styles.label, { color: "white" }]}>Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -65,7 +66,7 @@ const SignupScreen = ({ navigation }) => {
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <Text style={[styles.label, { color: 'white' }]}>Password</Text>
+      <Text style={[styles.label, { color: "white" }]}>Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -73,7 +74,7 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Text style={[styles.label, { color: 'white' }]}>Confirm Password</Text>
+      <Text style={[styles.label, { color: "white" }]}>Confirm Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
@@ -81,14 +82,16 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
-      <Text style={[styles.label, { color: 'white' }]}>Major</Text>
+      <Text style={[styles.label, { color: "white" }]}>Major</Text>
       <TextInput
         style={styles.input}
         placeholder="Major"
         value={major}
         onChangeText={setMajor}
       />
-      <Text style={[styles.label, { color: 'white' }]}>Birthdate (MM/DD/YYYY)</Text>
+      <Text style={[styles.label, { color: "white" }]}>
+        Birthdate (MM/DD/YYYY)
+      </Text>
       <TextInput
         style={styles.input}
         placeholder="Birthdate"
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#000',
+    backgroundColor: "#000",
   },
   imageStyle: {
     width: 100,
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    color: 'white',
+    color: "white",
     borderColor: "#ccc",
     borderRadius: 5,
   },
