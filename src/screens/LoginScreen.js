@@ -41,12 +41,14 @@ const LoginScreen = ({ navigation }) => {
       <TextInput
         style={styles.TextInput}
         placeholder="Email"
+        placeholderTextColor="#FFFFFF"
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.TextInput}
         placeholder="Password"
+        placeholderTextColor="#FFFFFF"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
