@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../DataContext/DataContext";
 
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, Linking } from "react-native";
 
 const ProfileScreen = ({ navigation }) => {
   /* EVent in Dictionary */
@@ -11,6 +11,10 @@ const ProfileScreen = ({ navigation }) => {
   const goHome = () => {
     navigation.navigate("Home");
   };
+
+  const handleLinkPress = (url) => {
+    Linking.openURL(url);
+  }
 
   return (
     <View style={styles.EntireContainer}>
@@ -57,7 +61,14 @@ const ProfileScreen = ({ navigation }) => {
             <Text style = {styles.BoldText}>Notes: {'\n'}</Text> 
             {event.note}
           </Text>
-          <Text style={styles.InfoText}>{event.register_link}</Text>
+          <Text style={styles.InfoText}>
+            <Text style = {styles.BoldText}>Registration: {'\n'}</Text>
+            <Text style = {styles.LinkText}
+              onPress = {() => handleLinkPress(event.register_link)}
+            >
+            {event.register_link}
+            </Text>
+          </Text>
         </View>
       </View>
     </View>
@@ -128,6 +139,10 @@ const styles = StyleSheet.create({
   },
   BoldText: {
     fontWeight: 'bold',
+  },
+  LinkText: {
+    color: 'blue',
+    textDecorationLine: 'underline',
   },
 });
 
