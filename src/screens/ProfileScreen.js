@@ -46,9 +46,18 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.InfoContainer}>
-          <Text style={styles.major}>{profile.major}</Text>
-          <Text style={styles.info}>{profile.grade}</Text>
-          <Text style={styles.info}>{profile.fog}</Text>
+          <Text style={styles.major}>
+            <Text style = {styles.BoldText}>Major: </Text>
+            {profile.major}
+          </Text>
+          <Text style={styles.info}> 
+            <Text style = {styles.BoldText}>Grade: </Text>
+            {profile.grade}
+          </Text>
+          <Text style={styles.info}>
+            <Text style = {styles.BoldText}>Focus Group: </Text>
+            {profile.fog}
+          </Text>
         </View>
       </View>
     </View>
@@ -71,7 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 10,
+    marginTop: 30,
   },
   BackIcon: {
     width: 30,
@@ -131,6 +140,9 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 20,
     color: "white",
+  },
+  BoldText: {
+    fontWeight: 'bold',
   },
 });
 
