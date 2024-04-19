@@ -41,6 +41,7 @@ export const DataProvider = ({ children }) => {
     "App Dev",
     "Sophomore"
   );
+  NAMWOOK.points = 50;
   const FABIAN = new User(
     "Fabian", // Name
     "fabiankmroh@berkeley.edu",
@@ -50,6 +51,7 @@ export const DataProvider = ({ children }) => {
     "App Dev",
     "Freshman"
   );
+  FABIAN.points = 70;
 
   const BANQUET = new Event(
     "Banquet",
