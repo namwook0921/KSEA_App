@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   },
   MainContainer: {
     width: "80%", // 80% of Screen Width
-    aspectRatio: 0.55, // Height & Width Ratio
+    flex: 0.9, 
+    aspectRatio: 0.5, // Height & Width Ratio
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
@@ -123,26 +124,28 @@ const styles = StyleSheet.create({
     borderColor: "#FFF",
   },
   KSEALogo: {
-    width: 75,
-    height: 75,
+    width: 90,
+    height: 90,
   },
   TitleContainer: {
-    flex: 0.2,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
   },
   TitleText: {
-    fontSize: 25,
-    marginTop: 5,
-    marginBottom: 5,
+    fontSize: 35,
     color: "white",
+    flexShrink: 1,
   },
   InfoContainer: {
     width: "100%",
-    marginTop: 10,
+    marginTop: 30,
   },
   InfoText: {
-    fontSize: 16,
+    fontSize: 25,
     color: "white",
-    marginBottom: 5,
+    marginBottom: 10,
   },
   BoldText: {
     fontWeight: "bold",
