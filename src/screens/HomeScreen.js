@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from "react-native";
 import { useData } from "../DataContext/DataContext";
 
 // Example values
@@ -26,6 +26,10 @@ const HomeScreen = ({ navigation }) => {
 
   const goLeaderboard = () => {
     navigation.navigate("Leaderboard");
+  };
+
+  const goAddEvent = () => {
+    navigation.navigate("AddEvent");
   };
 
   const renderCalendar = () => {
@@ -80,6 +84,8 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Calendar Here */}
       {/* {renderCalendar()} */}
+
+      <Button title="Add Event" onPress={goAddEvent}></Button>
 
       {/* Bottom Bar Here */}
       <View style={styles.bottomBar}>
