@@ -1,13 +1,35 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from "react-native";
+import { useData } from "../DataContext/DataContext";
+
+// Example values
+const EXAMPLEUPCOMINGEVENTS =
+  "Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)";
+const EXAMPLEPOINTS = 67;
 
 const HomeScreen = ({ navigation }) => {
+  const { data, setCurrentIndex } = useData();
+
+  const now = new Date();
+
+  const futureEvents = data.events
+    .filter((event) => event.date >= now)
+    .sort((a, b) => a.date - b.date);
+
   const goProfile = () => {
-    navigation.navigate("Profile"); /* name on App.js (Component X) */
+    navigation.navigate("Profile");
+  };
+
+  const goEvent = () => {
+    navigation.navigate("Event");
   };
 
   const goLeaderboard = () => {
     navigation.navigate("Leaderboard");
+  };
+
+  const goAddEvent = () => {
+    navigation.navigate("AddEvent");
   };
 
   const renderCalendar = () => {
@@ -31,19 +53,37 @@ const HomeScreen = ({ navigation }) => {
         <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
         <View style={styles.dateTextContainter}>
           <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>
-          <Text style={styles.dateText}>(Wed)</Text>
+          {/* <Text style={styles.dateText}>{new Date().}</Text> */}
         </View>
       </View>
 
       {/* Second Bar Here */}
       <View style={styles.secondBar}>
-        <Text style={styles.upcomingEventsText}>
-          Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)
-        </Text>
+        <Text style={styles.upcomingEventsText}>EVENTS</Text>
+
+        <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
+        {data.events.map((event, index) => (
+          <TouchableOpacity
+            onPress={() => {
+              setCurrentIndex(index);
+              goEvent();
+            }}
+          >
+            <Text key={index} style={styles.upcomingEventsText}>
+              {event.name} (
+              {event.date.toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "numeric",
+                day: "numeric",
+              })}
+              ){index < data.events.length - 1 ? ", " : ""}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
 
-      {/* Calendar Here */}
-      {/* {renderCalendar()} */}
+
+      <Button title="Add Event" onPress={goAddEvent}></Button>
 
       {/* Bottom Bar Here */}
       <View style={styles.bottomBar}>
@@ -53,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
             style={styles.leaderboardIcon}
           />
         </TouchableOpacity>
-        <Text style={styles.pointsText}>My KSEA Points: 67</Text>
+        <Text style={styles.pointsText}>My KSEA Points: {EXAMPLEPOINTS}</Text>
       </View>
     </View>
   );
@@ -96,8 +136,8 @@ const styles = StyleSheet.create({
   },
   upcomingEventsText: {
     color: "#ffffff",
-    fontSize: 18,
-    // fontWeight: "bold",
+    fontSize: 22,
+    fontWeight: "bold",
   },
   // calendarContainer: {
   // },

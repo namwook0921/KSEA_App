@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../DataContext/DataContext";
 
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+} from "react-native";
 
-const ProfileScreen = ({ navigation }) => {
-  /* Profile in Dictionary */
+const EventScreen = ({ navigation }) => {
+  /* Event in Dictionary */
   const { data } = useData();
-  const profile = data.currentMember;
+  const event = data.events[data.currentIndex];
 
   const goHome = () => {
     navigation.navigate("Home");
+  };
+
+  const handleLinkPress = (url) => {
+    Linking.openURL(url);
   };
 
   return (
@@ -23,7 +34,6 @@ const ProfileScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-
         <View style={styles.KSEAContainer}>
           <Image
             source={require("../media/ksea-logo.jpg")}
@@ -32,31 +42,39 @@ const ProfileScreen = ({ navigation }) => {
           />
         </View>
 
-        <View style={styles.ProfileContainer}>
-          <Image
-            source={require("../media/profile.png")}
-            style={styles.ProfilePhoto}
-            resizeMode="contain"
-          />
-        </View>
-
-        <View style={styles.NameContainer}>
-          <Text style={styles.name}>{profile.name}</Text>
-          <Text style={styles.mail}>{profile.email}</Text>
+        <View style={styles.TitleContainer}>
+          <Text style={styles.TitleText}>{event.name}</Text>
         </View>
 
         <View style={styles.InfoContainer}>
-          <Text style={styles.major}>
-            <Text style={styles.BoldText}>Major: </Text>
-            {profile.major}
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Date: </Text>
+            {event.date.toDateString()}
           </Text>
-          <Text style={styles.info}>
-            <Text style={styles.BoldText}>Grade: </Text>
-            {profile.grade}
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Type: </Text>
+            {event.type}
           </Text>
-          <Text style={styles.info}>
-            <Text style={styles.BoldText}>Focus Group: </Text>
-            {profile.fog}
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Location: </Text>
+            {event.location}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Points: </Text>
+            {event.points}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Notes: {"\n"}</Text>
+            {event.note}
+          </Text>
+          <Text style={styles.InfoText}>
+            <Text style={styles.BoldText}>Registration: {"\n"}</Text>
+            <Text
+              style={styles.LinkText}
+              onPress={() => handleLinkPress(event.register_link)}
+            >
+              {event.register_link}
+            </Text>
           </Text>
         </View>
       </View>
@@ -86,64 +104,53 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  KSEAContainer: {
+    flex: 0.3,
+    marginBottom: 10,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+  },
   MainContainer: {
     width: "80%", // 80% of Screen Width
     aspectRatio: 0.55, // Height & Width Ratio
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
+    paddingHorizontal: 10,
 
     backgroundColor: "#000",
     borderWidth: 2,
     borderColor: "#FFF",
   },
-  KSEAContainer: {
-    flex: 0.5,
-    marginBottom: 20,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-  },
   KSEALogo: {
     width: 75,
     height: 75,
   },
-  ProfileContainer: {
-    flex: 2,
+  TitleContainer: {
+    flex: 0.2,
   },
-  ProfilePhoto: {
-    width: "90%",
-    height: "90%",
-    aspectRatio: 1,
-  },
-  NameContainer: {
-    flex: 1,
-  },
-  name: {
+  TitleText: {
     fontSize: 25,
     marginTop: 5,
     marginBottom: 5,
     color: "white",
   },
-  mail: {
-    fontSize: 15,
-    marginTop: 5,
-    marginBottom: 15,
-    color: "white",
-  },
   InfoContainer: {
-    flex: 1,
+    width: "100%",
+    marginTop: 10,
   },
-  major: {
-    fontSize: 20,
+  InfoText: {
+    fontSize: 16,
     color: "white",
-  },
-  info: {
-    fontSize: 20,
-    color: "white",
+    marginBottom: 5,
   },
   BoldText: {
     fontWeight: "bold",
   },
+  LinkText: {
+    color: "#87CEFA",
+    textDecorationLine: "underline",
+  },
 });
 
-export default ProfileScreen;
+export default EventScreen;

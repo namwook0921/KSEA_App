@@ -16,6 +16,7 @@ const Navigation = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
+        <Stack.Screen name="AddEvent" component={AddEventScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
