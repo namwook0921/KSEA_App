@@ -34,7 +34,7 @@ const ProfileScreen = ({ navigation }) => {
 
         <View style={styles.ProfileContainer}>
           <Image
-            source={require("../media/profile.png")}
+            source={require("../media/profile-jaewon.jpeg")}
             style={styles.ProfilePhoto}
             resizeMode="contain"
           />
