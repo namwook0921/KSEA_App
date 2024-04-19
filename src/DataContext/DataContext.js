@@ -42,6 +42,7 @@ export const DataProvider = ({ children }) => {
     "Sophomore"
   );
   NAMWOOK.points = 50;
+
   const FABIAN = new User(
     "Fabian", // Name
     "fabiankmroh@berkeley.edu",
@@ -52,6 +53,39 @@ export const DataProvider = ({ children }) => {
     "Freshman"
   );
   FABIAN.points = 70;
+
+  const JAEWON = new User(
+    "Jaewon",
+    "jwhur38@berkeley.edu",
+    "1234",
+    "EECS",
+    "Social Chair",
+    "App Dev",
+    "Junior"
+  );
+  JAEWON.points = 100;
+
+  const HWIDONG = new User(
+    "Hwidong",
+    "hwidium@berkeley.edu",
+    "1234",
+    "MSE",
+    "Member",
+    "None",
+    "Freshman"
+  );
+  HWIDONG.points = 120;
+
+  const YOONYEE = new User(
+    "Yoonyee",
+    "ysong@berkeley.edu",
+    "1234",
+    "BioEngineering",
+    "President",
+    "3D Blender",
+    "Sophomore"
+  );
+  YOONYEE.points = 200;
 
   const BANQUET = new Event(
     "Banquet",
@@ -73,7 +107,7 @@ export const DataProvider = ({ children }) => {
     "None"
   );
   const [data, setData] = useState({
-    members: [NAMWOOK, FABIAN],
+    members: [NAMWOOK, FABIAN, JAEWON, HWIDONG, YOONYEE],
     executives: [],
     events: [BANQUET, GM4],
     currentIndex: 0,

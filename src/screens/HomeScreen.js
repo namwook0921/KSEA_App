@@ -82,8 +82,6 @@ const HomeScreen = ({ navigation }) => {
         ))}
       </View>
 
-      {/* Calendar Here */}
-      {/* {renderCalendar()} */}
 
       <Button title="Add Event" onPress={goAddEvent}></Button>
 

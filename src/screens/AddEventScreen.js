@@ -47,7 +47,6 @@ const AddEventScreen = ({ navigation }) => {
         placeholder="Event Type"
         value={type}
         onChangeText={setType}
-        secureTextEntry
       />
       <Text style={[styles.label, { color: "white" }]}>Date (MM/DD)</Text>
       <TextInput
@@ -55,7 +54,6 @@ const AddEventScreen = ({ navigation }) => {
         placeholder="Date (MM/DD)"
         value={date}
         onChangeText={setDate}
-        secureTextEntry
       />
       <Text style={[styles.label, { color: "white" }]}>Location</Text>
       <TextInput
