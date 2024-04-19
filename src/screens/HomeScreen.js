@@ -43,30 +43,31 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
     </View>
 
-      {/* Second Bar Here */}
-      <View style={styles.secondBar}>
+    
+    <View style={styles.secondBar}>
         <View style={styles.dateTextContainter}>
-          <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>
-          {/* <Text style={styles.dateText}>{new Date().}</Text> */}
+          <Text style={styles.dateText}>Welcome, Today is {new Date().toLocaleDateString()}</Text>
         </View>
-        <Text style={styles.upcomingEventsText}>EVENTS</Text>
 
         <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
         {data.events.map((event, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() => {
               setCurrentIndex(index);
               goEvent();
             }}
+            style={styles.eventRow} // Use the row style
           >
-            <Text key={index} style={styles.upcomingEventsText}>
-              {event.name} (
+            <Text style={styles.eventDate}>
               {event.date.toLocaleDateString("en-US", {
-                weekday: "long",
                 month: "numeric",
                 day: "numeric",
+                weekday: "short",
               })}
-              ){index < data.events.length - 1 ? ", " : ""}
+            </Text>
+            <Text style={styles.eventName}>
+              {event.name}
             </Text>
           </TouchableOpacity>
         ))}
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: "#ffffff",
-    fontSize: 16,
+    fontSize: 25,
     fontWeight: "bold",
   },
   textContainer: {
@@ -136,6 +137,23 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 22,
     fontWeight: "bold",
+  },
+  eventRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  eventDate: {
+    color: '#ffffff',
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginRight: 10, // Optional: add margin if needed
+  },
+  eventName: {
+    color: '#ffffff',
+    fontSize: 25,
+    flexShrink: 1, // Allows text to shrink and wrap if needed
   },
   // calendarContainer: {
   // },
