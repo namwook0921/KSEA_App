@@ -17,7 +17,9 @@ const LoginScreen = ({ navigation }) => {
     }
 
     const user = data.members.find(
-      (user) => user.email === email && user.password === password
+      (user) =>
+        user.email.toLowerCase() === email.toLowerCase() &&
+        user.password === password
     );
     if (user) {
       setCurrentMember(user);
