@@ -106,10 +106,31 @@ export const DataProvider = ({ children }) => {
     "Itinerary: FoG Presentation",
     "None"
   );
+
+  const MINGLES9 = new Event(
+    "Mingles #9: Chicken + Beer",
+    "Mingles",
+    "2024-04-21",
+    "3310 Powell St, Emeryville, CA 94608",
+    5,
+    "Price: / n\nTransportation: Uber",
+    "DM to Host"
+  )
+
+  const MINGLES10 = new Event(
+    "Mingles #10: Whiskey Tasting",
+    "Mingles",
+    "2024-04-25",
+    "2515 Benvenue Ave",
+    5,
+    "Cost: $35\nMax: 6 People",
+    "DM to Host"
+  )
+
   const [data, setData] = useState({
     members: [NAMWOOK, FABIAN, JAEWON, HWIDONG, YOONYEE],
     executives: [],
-    events: [BANQUET, GM4],
+    events: [GM4, BANQUET, MINGLES9, MINGLES10],
     currentIndex: 0,
     currentMember: null,
   });

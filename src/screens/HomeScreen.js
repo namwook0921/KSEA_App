@@ -2,13 +2,9 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from "react-native";
 import { useData } from "../DataContext/DataContext";
 
-// Example values
-const EXAMPLEUPCOMINGEVENTS =
-  "Upcoming Events: GM 3 (3/22), Big Social (4/6), FOG Meeting (4/8)";
-const EXAMPLEPOINTS = 67;
-
 const HomeScreen = ({ navigation }) => {
   const { data, setCurrentIndex } = useData();
+  const profile = data.currentMember;
 
   const now = new Date();
 
@@ -45,8 +41,9 @@ const HomeScreen = ({ navigation }) => {
 
     
     <View style={styles.secondBar}>
-        <View style={styles.dateTextContainter}>
-          <Text style={styles.dateText}>Welcome, Today is {new Date().toLocaleDateString()}</Text>
+        <View style={styles.WelcomeContainer}>
+          <Text style={styles.WelcomeText}>Welcome, {profile.name}!</Text>
+          <Text style={styles.WelcomeText}>Today is {new Date().toLocaleDateString()}.</Text>
         </View>
 
         <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
@@ -74,7 +71,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
 
-      <Button title="Add Event" onPress={goAddEvent}></Button>
+      <Button title="Create Event" onPress={goAddEvent}></Button>
 
       {/* Bottom Bar Here */}
       <View style={styles.bottomBar}>
@@ -84,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
             style={styles.leaderboardIcon}
           />
         </TouchableOpacity>
-        <Text style={styles.pointsText}>My KSEA Points: {EXAMPLEPOINTS}</Text>
+        <Text style={styles.pointsText}>My KSEA Points: {profile.points}</Text>
       </View>
     </View>
   );
@@ -120,10 +117,15 @@ const styles = StyleSheet.create({
     height: 90,
     resizeMode: "contain",
   },
-  dateText: {
+  WelcomeText: {
     color: "#ffffff",
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
+  },
+  WelcomeContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20, // Adjust this value to control space below the date text container
   },
   textContainer: {
     flex: 1,
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
   },
   upcomingEventsText: {
     color: "#ffffff",
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: "bold",
   },
   eventRow: {
@@ -143,16 +145,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 10,
     paddingHorizontal: 20,
+    borderBottomWidth: 1, // Add border to each row
+    borderBottomColor: '#FFFFFF', // Set the color of the border
   },
   eventDate: {
     color: '#ffffff',
     fontSize: 25,
     fontWeight: 'bold',
+    flex: 1,
     marginRight: 10, // Optional: add margin if needed
+    textAlign: 'left',
+    borderRightWidth: 1, // Right border to separate columns
+    borderRightColor: '#FFFFFF', // Color of the right borde
   },
   eventName: {
     color: '#ffffff',
     fontSize: 25,
+    flex: 1,
+    textAlign: 'left',
     flexShrink: 1, // Allows text to shrink and wrap if needed
   },
   // calendarContainer: {
@@ -168,14 +178,14 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   leaderboardIcon: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     resizeMode: "contain",
     paddingVertical: 40,
   },
   pointsText: {
     color: "#FFD700",
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: "bold",
   },
 });
