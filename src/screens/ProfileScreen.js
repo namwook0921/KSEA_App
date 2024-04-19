@@ -88,10 +88,12 @@ const styles = StyleSheet.create({
   },
   MainContainer: {
     width: "80%", // 80% of Screen Width
-    aspectRatio: 0.55, // Height & Width Ratio
-    justifyContent: "center",
+    flex: 0.9, 
+    aspectRatio: 0.5, // Height & Width Ratio
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
+    paddingHorizontal: 10,
 
     backgroundColor: "#000",
     borderWidth: 2,
@@ -99,16 +101,16 @@ const styles = StyleSheet.create({
   },
   KSEAContainer: {
     flex: 0.5,
-    marginBottom: 20,
+    marginBottom: 40,
     justifyContent: "flex-start",
     alignItems: "stretch",
   },
   KSEALogo: {
-    width: 75,
-    height: 75,
+    width: 90,
+    height: 90,
   },
   ProfileContainer: {
-    flex: 2,
+    flex: 3,
   },
   ProfilePhoto: {
     width: "90%",
@@ -117,15 +119,17 @@ const styles = StyleSheet.create({
   },
   NameContainer: {
     flex: 1,
+    width: "100%",
+    alignItems: "center",
   },
   name: {
-    fontSize: 25,
+    fontSize: 35,
     marginTop: 5,
     marginBottom: 5,
     color: "white",
   },
   mail: {
-    fontSize: 15,
+    fontSize: 25,
     marginTop: 5,
     marginBottom: 15,
     color: "white",
@@ -134,11 +138,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   major: {
-    fontSize: 20,
+    fontSize: 25,
     color: "white",
   },
   info: {
-    fontSize: 20,
+    fontSize: 25,
     color: "white",
   },
   BoldText: {

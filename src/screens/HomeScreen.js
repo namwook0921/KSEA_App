@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
   logo: {
-    width: 90,
-    height: 90,
+    width: 130,
+    height: 130,
     resizeMode: "contain",
   },
   WelcomeText: {
