@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
 import { useData } from "../DataContext/DataContext";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -32,24 +31,16 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
-    try {
-      const users = data.members;
+    const users = data.members;
 
-      if (users.some((user) => user.email === email)) {
-        alert("This email is already in use.");
-        return;
-      }
-
-      const newUser = { name, email, password, major, birthdate, grade };
-
-      addUser(newUser);
-
-      alert("User registered successfully!");
-      navigation.navigate("Login");
-    } catch (error) {
-      console.error("Error saving user data:", error);
-      alert("Failed to save user data.");
+    if (users.some((user) => user.email === email)) {
+      alert("This email is already in use.");
+      return;
     }
+
+    addUser(name, email, password, major, birthdate, grade);
+
+    alert("User registered successfully!");
 
     navigation.navigate("Login");
   };

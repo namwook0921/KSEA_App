@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DataContext = createContext();
 
@@ -33,31 +32,24 @@ class Event {
 }
 
 export const DataProvider = ({ children }) => {
-  const loadMembersData = async () => {
-    try {
-      const membersData = await AsyncStorage.getItem("members");
-      if (membersData) {
-        setData((prevData) => ({
-          ...prevData,
-          members: JSON.parse(membersData),
-        }));
-      }
-    } catch (error) {
-      console.error("Failed to load members data from storage:", error);
-    }
-  };
-
-  const saveMembersData = async (members) => {
-    try {
-      await AsyncStorage.setItem("members", JSON.stringify(members));
-    } catch (error) {
-      console.error("Failed to save members data to storage:", error);
-    }
-  };
-
-  useEffect(() => {
-    loadMembersData();
-  }, []);
+  const NAMWOOK = new User(
+    "Namwook", // Name
+    "namwook0921@berkeley.edu",
+    "1234",
+    "Math/CS",
+    "member",
+    "App Dev",
+    "Sophomore"
+  );
+  const FABIAN = new User(
+    "Fabian", // Name
+    "fabiankmroh@berkeley.edu",
+    "4321",
+    "DS",
+    "member",
+    "App Dev",
+    "Freshman"
+  );
 
   const BANQUET = new Event(
     "Banquet",
@@ -78,23 +70,12 @@ export const DataProvider = ({ children }) => {
     "Itinerary: FoG Presentation",
     "None"
   );
-
-  const NAMWOOK = new User(
-    "Namwook", // Name
-    "sexypepe@berkeley.edu",
-    "sexypepe",
-    "Rizzology",
-    "member",
-    "App Dev",
-    "Sophomore"
-  );
-
   const [data, setData] = useState({
-    members: [NAMWOOK],
+    members: [NAMWOOK, FABIAN],
     executives: [],
     events: [BANQUET, GM4],
     currentIndex: 0,
-    currentMember: NAMWOOK,
+    currentMember: null,
   });
 
   const addEvent = (name, type, date, location, points, note) => {
@@ -105,19 +86,33 @@ export const DataProvider = ({ children }) => {
     }));
   };
 
-  const addUser = (name, email, password, major, type, grade) => {
-    const newUser = new User(name, email, password, major, type, grade);
-    setData((prevData) => {
-      const updatedMembers = [...prevData.members, newUser];
-      saveMembersData(updatedMembers);
-      return { ...prevData, members: updatedMembers };
-    });
+  const addUser = (name, email, password, major, birthdate, grade) => {
+    const newUser = new User(
+      name,
+      email,
+      password,
+      major,
+      "member",
+      "App Dev",
+      grade
+    );
+    setData((prevData) => ({
+      ...prevData,
+      members: [...prevData.members, newUser],
+    }));
   };
 
   const setCurrentIndex = (index) => {
     setData((prevData) => ({
       ...prevData,
       currentIndex: index,
+    }));
+  };
+
+  const setCurrentMember = (user) => {
+    setData((prevData) => ({
+      ...prevData,
+      currentMember: user,
     }));
   };
 
@@ -128,6 +123,7 @@ export const DataProvider = ({ children }) => {
         addEvent,
         addUser,
         setCurrentIndex,
+        setCurrentMember,
       }}
     >
       {children}

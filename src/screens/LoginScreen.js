@@ -8,7 +8,7 @@ import { useData } from "../DataContext/DataContext";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { data } = useData();
+  const { data, setCurrentMember } = useData();
 
   const handleLogin = () => {
     if (email === "" || password === "") {
@@ -20,6 +20,7 @@ const LoginScreen = ({ navigation }) => {
       (user) => user.email === email && user.password === password
     );
     if (user) {
+      setCurrentMember(user);
       navigation.navigate("Home"); // Assuming 'Home' is a valid route
     } else {
       alert("Incorrect email or password.");
