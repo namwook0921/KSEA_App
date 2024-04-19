@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Image, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useData } from "../DataContext/DataContext";
 
 const SignupScreen = ({ navigation }) => {
@@ -44,9 +45,25 @@ const SignupScreen = ({ navigation }) => {
 
     navigation.navigate("Login");
   };
+  const goLogIn = () => {
+    navigation.navigate("Login");
+  };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
+      <View style={styles.BackContainer}>
+          <TouchableOpacity onPress={goLogIn}>
+            <Image
+              source={require("../media/icons8-back-100.png")}
+              style={styles.BackIcon}
+            />
+          </TouchableOpacity>
+        </View>
       <Image
         source={require("../media/ksea-logo.jpg")}
         style={styles.imageStyle}
@@ -111,7 +128,7 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setGrade}
       />
       <Button title="Signup" onPress={handleSignup} />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -121,6 +138,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#000",
+  },
+  BackContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: 100,
+    height: 100,
+    backgroundColor: "#000",
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+  },
+  BackIcon: {
+    width: 30,
+    height: 30,
   },
   imageStyle: {
     width: 100,

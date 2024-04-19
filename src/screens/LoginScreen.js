@@ -1,6 +1,6 @@
 // LoginScreen.js
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, Image, TextInput, Button, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 // const id = "kseaatcal@gmail.com";
 // const pw = "HelloWorld!"
 import { useData } from "../DataContext/DataContext";
@@ -34,18 +34,17 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 0}
+    >
       <Image
         source={require("../media/ksea-logo.jpg")}
         style={styles.imageStyle}
         resizeMode="contain"
       />
       <Text style={styles.title}>Login</Text>
-      {/* <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 0}
-      > */}
       <TextInput
         style={styles.TextInput}
         placeholder="Email"
@@ -64,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
       {/* </KeyboardAvoidingView> */}
       <Button title="Login" onPress={handleLogin} />
       <Button title="Sign Up" onPress={goSignUp}></Button>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

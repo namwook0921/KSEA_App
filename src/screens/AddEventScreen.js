@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Image, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const AddEventScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -25,8 +26,25 @@ const AddEventScreen = ({ navigation }) => {
     navigation.navigate("Home");
   };
 
+  const goHome = () => {
+    navigation.navigate("Home");
+  };
+
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
+      <View style={styles.BackContainer}>
+          <TouchableOpacity onPress={goHome}>
+            <Image
+              source={require("../media/icons8-back-100.png")}
+              style={styles.BackIcon}
+            />
+          </TouchableOpacity>
+      </View>
       <Image 
         source = {require('../media/ksea-logo.jpg')}
         style = {styles.imageStyle}
@@ -77,8 +95,8 @@ const AddEventScreen = ({ navigation }) => {
         value={note}
         onChangeText={setNote}
       />
-      <Button title="Add Event" onPress={handleAddEvent} />
-    </View>
+      <Button title="Request Officer Approval" onPress={handleAddEvent} />
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -89,13 +107,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: '#000',
   },
-  imageStyle: {
+  BackContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
     width: 100,
     height: 100,
+    backgroundColor: "#000",
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+  },
+  BackIcon: {
+    width: 30,
+    height: 30,
+  },
+  imageStyle: {
+    width: 150,
+    height: 150,
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
+  },
+  label: {
+    fontSize: 20,
   },
   input: {
     width: "80%",
