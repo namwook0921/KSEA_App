@@ -31,34 +31,24 @@ const HomeScreen = ({ navigation }) => {
   const goAddEvent = () => {
     navigation.navigate("AddEvent");
   };
-
-  const renderCalendar = () => {
-    return (
-      <View style={styles.calendarContainer}>
-        {/* Calendar dates go here */}
-      </View>
-    );
-  };
-
   return (
     <View style={styles.homeContainer}>
-      {/* Top Bar Here */}
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={goProfile}>
-          <Image
-            source={require("../media/profile.png")}
-            style={styles.profileIcon}
-          />
-        </TouchableOpacity>
-        <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
+        <View style={{ flex: 1 }} />
+        <View style={styles.KSEAContainer}>
+          <Image source={require("../media/ksea-logo.jpg")} style={styles.logo} />
+        </View>
+      <TouchableOpacity onPress={goProfile}>
+        <Image source={require("../media/profile.png")} style={styles.profileIcon} />
+      </TouchableOpacity>
+    </View>
+
+      {/* Second Bar Here */}
+      <View style={styles.secondBar}>
         <View style={styles.dateTextContainter}>
           <Text style={styles.dateText}>{new Date().toLocaleDateString()}</Text>
           {/* <Text style={styles.dateText}>{new Date().}</Text> */}
         </View>
-      </View>
-
-      {/* Second Bar Here */}
-      <View style={styles.secondBar}>
         <Text style={styles.upcomingEventsText}>EVENTS</Text>
 
         <Text style={styles.upcomingEventsText}>Upcoming Events: </Text>
@@ -110,11 +100,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 10,
+    padding: 40,
   },
   profileIcon: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
+  },
+  KSEAContainer: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: -1,
   },
   logo: {
     width: 90,
