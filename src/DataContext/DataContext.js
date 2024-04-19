@@ -100,7 +100,7 @@ export const DataProvider = ({ children }) => {
   const GM4 = new Event(
     "GM #4",
     "General Meeting",
-    "2024-04-19",
+    "2024-04-20",
     "Dwinelle",
     10,
     "Itinerary: FoG Presentation",
@@ -110,7 +110,7 @@ export const DataProvider = ({ children }) => {
   const MINGLES9 = new Event(
     "Mingles #9: Chicken + Beer",
     "Mingles",
-    "2024-04-21",
+    "2024-04-22",
     "3310 Powell St, Emeryville, CA 94608",
     5,
     "Price: / n\nTransportation: Uber",
@@ -120,7 +120,7 @@ export const DataProvider = ({ children }) => {
   const MINGLES10 = new Event(
     "Mingles #10: Whiskey Tasting",
     "Mingles",
-    "2024-04-25",
+    "2024-04-26",
     "2515 Benvenue Ave",
     5,
     "Cost: $35\nMax: 6 People",
@@ -130,7 +130,7 @@ export const DataProvider = ({ children }) => {
   const [data, setData] = useState({
     members: [NAMWOOK, FABIAN, JAEWON, HWIDONG, YOONYEE],
     executives: [],
-    events: [GM4, BANQUET, MINGLES9, MINGLES10],
+    events: [GM4, MINGLES9, MINGLES10, BANQUET],
     currentIndex: 0,
     currentMember: null,
   });

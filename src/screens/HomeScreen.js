@@ -69,9 +69,12 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </View>
-
-
-      <Button title="Create Event" onPress={goAddEvent}></Button>
+      
+      <View style = {styles.AddEventContainer}>
+      <TouchableOpacity onPress = {goAddEvent}>
+          <Text style = {styles.addEvent}>Create Event</Text>
+        </TouchableOpacity>
+      </View>
 
       {/* Bottom Bar Here */}
       <View style={styles.bottomBar}>
@@ -165,8 +168,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     flexShrink: 1, // Allows text to shrink and wrap if needed
   },
-  // calendarContainer: {
-  // },
+  addEvent: {
+    color: "#007AFF",
+    fontSize: 30,
+  },
   bottomBar: {
     position: "absolute",
     left: 0,
@@ -176,6 +181,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 50,
+  },
+  AddEventContainer: {
+    justifyContent: 'center',  // Center children vertically in the container
+    alignItems: 'center' 
   },
   leaderboardIcon: {
     width: 50,
